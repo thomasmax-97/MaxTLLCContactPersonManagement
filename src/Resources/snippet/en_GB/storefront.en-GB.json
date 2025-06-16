@@ -1,0 +1,17 @@
+{
+  "account": {
+    "contactPersons": {
+      "headline": "Contact Persons",
+      "description": "Here you can find all your assigned contact persons.",
+      "email": "Email",
+      "phone": "Phone",
+      "noContactPersons": "No contact persons are currently assigned to your account.",
+      "noContactPersonsTitle": "No contact persons available"
+    },
+    "profile": {
+      "contactPersons": "Your Contact Persons",
+      "viewAllContactPersons": "View All",
+      "andMoreContactPersons": "... and %count% more"
+    }
+  }
+}

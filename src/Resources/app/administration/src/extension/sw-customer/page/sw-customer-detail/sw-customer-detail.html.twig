@@ -1,0 +1,13 @@
+<!-- src/Resources/app/administration/src/page/sw-customer-detail/sw-customer-detail.html.twig -->
+
+{% block sw_customer_detail_content_tab_order %}
+    {# This parent is very important as you don't want to override the order tab completely #}
+    {% parent %}
+
+    <!-- Add our custom contact persons tab -->
+    <sw-tabs-item
+        :route="{ name: 'sw.customer.detail.contactPersons', params: { id: $route.params.id } }"
+        :title="$tc('sw-customer.contactPerson.tabTitle') || 'Contact Persons'">
+        {{ $tc('sw-customer.contactPerson.tabTitle') || 'Contact Persons' }}
+    </sw-tabs-item>
+{% endblock %}

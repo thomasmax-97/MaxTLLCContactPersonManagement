@@ -1,0 +1,164 @@
+<!-- Simplified template leveraging Shopware's built-in component features -->
+<sw-card
+    :title="$tc('sw-customer.contactPerson.cardTitle')"
+    :isLoading="contactPersonsLoading"
+    class="sw-customer-detail-contact-persons">
+
+    <!-- Use sw-card's built-in toolbar slot -->
+    <template #toolbar>
+        <sw-button
+            variant="primary"
+            size="small"
+            :disabled="!hasValidCustomer"
+            @click="onAssignContactPersons">
+            {{ $tc('sw-customer.contactPerson.buttonAssign') }}
+        </sw-button>
+
+        <sw-button
+            variant="ghost"
+            size="small"
+            :routerLink="{ name: 'contact.person.list' }">
+            {{ $tc('sw-customer.contactPerson.buttonManageAll') }}
+        </sw-button>
+    </template>
+
+    <!-- Use sw-card's default slot for content -->
+    <template v-if="!hasValidCustomer">
+        <sw-empty-state
+            :title="$tc('sw-customer.contactPerson.noCustomerTitle')"
+            :subline="$tc('sw-customer.contactPerson.noCustomerSubline')"
+            icon="default-identity-card">
+        </sw-empty-state>
+    </template>
+
+    <template v-else-if="assignedContactPersons && assignedContactPersons.length > 0">
+        <!-- sw-data-grid handles its own styling -->
+        <sw-data-grid
+            :dataSource="assignedContactPersons"
+            :columns="contactPersonColumns"
+            :showSelection="false"
+            :showActions="true"
+            :isLoading="contactPersonsLoading"
+            identifier="sw-customer-assigned-contact-person-grid">
+
+            <template #column-active="{ item }">
+                <sw-icon
+                    v-if="item.active"
+                    name="small-default-checkmark-line-medium"
+                    small
+                    class="is--active">
+                </sw-icon>
+                <sw-icon
+                    v-else
+                    name="small-default-x-line-medium"
+                    small
+                    class="is--inactive">
+                </sw-icon>
+            </template>
+
+            <template #actions="{ item }">
+                <sw-context-menu-item @click="onEditContactPerson(item)">
+                    {{ $tc('sw-customer.contactPerson.contextMenuEdit') }}
+                </sw-context-menu-item>
+
+                <sw-context-menu-item
+                    @click="onRemoveAssignment(item.id)"
+                    class="sw-context-menu-item--danger">
+                    {{ $tc('sw-customer.contactPerson.contextMenuRemoveAssignment') }}
+                </sw-context-menu-item>
+            </template>
+        </sw-data-grid>
+    </template>
+
+    <template v-else-if="hasValidCustomer && !contactPersonsLoading">
+        <sw-empty-state
+            :title="$tc('sw-customer.contactPerson.emptyStateTitle')"
+            :subline="$tc('sw-customer.contactPerson.emptyStateSubline')"
+            icon="default-identity-card">
+        </sw-empty-state>
+    </template>
+</sw-card>
+
+<!-- Simplified Modal using sw-modal's built-in features -->
+<sw-modal
+    v-if="showAssignmentModal"
+    :title="$tc('sw-customer.contactPerson.modalTitleAssign')"
+    @modal-close="onCloseAssignmentModal"
+    size="large"
+    class="sw-customer-contact-assignment-modal">
+
+    <!-- Use sw-modal's default slot -->
+    <template v-if="availableContactPersons && availableContactPersons.length > 0">
+        <p>{{ $tc('sw-customer.contactPerson.assignmentDescription') }}</p>
+
+        <div class="sw-customer-contact-assignment__customer-info">
+            <strong>Customer:</strong> {{ customer.firstName }} {{ customer.lastName }}
+            <span v-if="customer.customerNumber">({{ customer.customerNumber }})</span>
+        </div>
+
+        <!-- sw-data-grid handles its own container and styling -->
+        <sw-data-grid
+            :dataSource="availableContactPersons"
+            :columns="contactPersonColumns"
+            :showSelection="true"
+            :showActions="false"
+            :fullPage="false"
+            :showPagination="true"
+            :limit="10"
+            @selection-change="onSelectionChange"
+            identifier="sw-customer-contact-assignment-grid">
+
+            <template #column-active="{ item }">
+                <sw-icon
+                    v-if="item.active"
+                    name="small-default-checkmark-line-medium"
+                    small
+                    class="is--active">
+                </sw-icon>
+                <sw-icon
+                    v-else
+                    name="small-default-x-line-medium"
+                    small
+                    class="is--inactive">
+                </sw-icon>
+            </template>
+        </sw-data-grid>
+
+        <div v-if="hasSelectedContactPersons" class="sw-customer-contact-assignment__selection-info">
+            <p><strong>{{ selectedContactPersons.length }}</strong> contact person(s) selected for assignment</p>
+        </div>
+    </template>
+
+    <template v-else>
+        <sw-empty-state
+            :title="$tc('sw-customer.contactPerson.noAvailableTitle')"
+            :subline="$tc('sw-customer.contactPerson.noAvailableSubline')"
+            icon="default-identity-card">
+            <template #actions>
+                <sw-button
+                    variant="primary"
+                    :routerLink="{ name: 'contact.person.create' }"
+                    @click="onCloseAssignmentModal">
+                    {{ $tc('sw-customer.contactPerson.buttonCreateNew') }}
+                </sw-button>
+            </template>
+        </sw-empty-state>
+    </template>
+
+    <!-- Use sw-modal's built-in modal-footer slot -->
+    <template #modal-footer>
+        <sw-button @click="onCloseAssignmentModal" size="small">
+            {{ $tc('global.default.cancel') }}
+        </sw-button>
+
+        <sw-button
+            v-if="availableContactPersons && availableContactPersons.length > 0"
+            variant="primary"
+            size="small"
+            :disabled="!hasSelectedContactPersons"
+            @click="onConfirmAssignment">
+            {{ $tc('sw-customer.contactPerson.buttonConfirmAssignment') }}
+            <span v-if="hasSelectedContactPersons">({{ selectedContactPersons.length }})</span>
+        </sw-button>
+    </template>
+</sw-modal>

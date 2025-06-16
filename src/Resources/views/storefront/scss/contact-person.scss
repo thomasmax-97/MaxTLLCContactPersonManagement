@@ -1,0 +1,62 @@
+// Contact Person Styles
+.contact-person-card {
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.contact-person-image {
+  border: 2px solid #e9ecef;
+}
+
+.contact-person-name {
+  color: #495057;
+  font-weight: 600;
+}
+
+.contact-detail {
+  line-height: 1.6;
+
+  strong {
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+}
+
+.contact-person-email,
+.contact-person-phone {
+  color: #007bff;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline !important;
+  }
+}
+
+.contact-person-summary {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+}
+
+.contact-person-avatar {
+  font-size: 1.5rem;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .contact-person-card .row {
+    text-align: center;
+  }
+
+  .contact-person-image {
+    margin-bottom: 1rem;
+  }
+}

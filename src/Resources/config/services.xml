@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="MaxTLLC\MaxTLLCContactPersonManagement\Core\Checkout\Customer\Aggregate\ContactPerson\ContactPersonDefinition">
+            <tag name="shopware.entity.definition" entity="maxtllc_contact_person" />
+        </service>
+
+        <service id="MaxTLLC\MaxTLLCContactPersonManagement\Core\Checkout\Customer\CustomerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="MaxTLLC\MaxTLLCContactPersonManagement\Core\Content\Media\MediaExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!-- Entity Repository -->
+        <service id="maxtllc_contact_person.repository"
+                 class="Shopware\Core\Framework\DataAbstractionLayer\EntityRepository">
+            <argument type="service" id="MaxTLLC\MaxTLLCContactPersonManagement\Core\Checkout\Customer\Aggregate\ContactPerson\ContactPersonDefinition"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Read\EntityReaderInterface"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\VersionManager"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearcherInterface"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Search\EntityAggregatorInterface"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Event\EntityLoadedEventFactory"/>
+            <tag name="shopware.entity.repository" entity="maxtllc_contact_person"/>
+        </service>
+
+        <!-- Entity Definition -->
+        <service id="MaxTLLC\MaxTLLCContactPersonManagement\Core\Checkout\Customer\Aggregate\ContactPerson\ContactPersonDefinition">
+            <tag name="shopware.entity.definition"/>
+        </service>
+
+        <!-- Storefront Controller -->
+        <service id="MaxTLLC\MaxTLLCContactPersonManagement\Storefront\Controller\ContactPersonPageController" public="true">
+            <argument type="service" id="maxtllc_contact_person.repository"/>
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <!-- Event Subscriber -->
+        <service id="MaxTLLC\MaxTLLCContactPersonManagement\Subscriber\ContactPersonSubscriber">
+            <argument type="service" id="maxtllc_contact_person.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+    </services>
+</container>

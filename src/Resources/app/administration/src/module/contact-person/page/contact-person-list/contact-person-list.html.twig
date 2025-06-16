@@ -1,0 +1,117 @@
+<!-- src/Resources/app/administration/src/module/contact-person/page/contact-person-list/contact-person-list.html.twig -->
+<sw-page class="contact-person-list">
+    <template #smart-bar-header>
+        <h2>
+            {{ $t('contact-person.list.textContactPersonOverview') }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button :routerLink="{ name: 'contact.person.create' }" variant="primary">
+            {{ $t('contact-person.list.buttonAddContactPerson') }}
+        </sw-button>
+    </template>
+
+    <template #content>
+        <div class="contact-person-list__content">
+            <sw-entity-listing
+                v-if="contactPersons"
+                :repository="repository"
+                :items="contactPersons"
+                :columns="contactPersonColumns"
+                :fullPage="true"
+                :showSettings="true"
+                :showSelection="false"
+                :allowInlineEdit="false"
+                :allowView="true"
+                :allowEdit="true"
+                :allowDelete="true"
+                :isLoading="isLoading"
+                identifier="contact-person-list"
+                @page-change="onPageChange"
+                @column-sort="onSortColumn"
+                @inline-edit-save="onInlineEditSave"
+                @delete-item="onDelete">
+
+                <template #column-active="{ item }">
+                    <div style="text-align: center;">
+                        <!-- Option 1: Try with different icon names -->
+                        <sw-icon
+                            v-if="item.active === true"
+                            name="regular-checkmark"
+                            size="16px"
+                            style="color: #37d046;">
+                        </sw-icon>
+                        <sw-icon
+                            v-else
+                            name="regular-times"
+                            size="16px"
+                            style="color: #de294c;">
+                        </sw-icon>
+                    </div>
+                </template>
+
+                <template #column-customer.firstName="{ item }">
+                    <router-link
+                        v-if="item.customer"
+                        :to="{ name: 'sw.customer.detail', params: { id: item.customer.id } }"
+                        class="sw-entity-listing__link">
+                        {{ item.customer.firstName }} {{ item.customer.lastName }}
+                    </router-link>
+                    <span v-else>-</span>
+                </template>
+
+                <template #actions="{ item }">
+                    <sw-context-menu-item
+                        :routerLink="{ name: 'contact.person.detail', params: { id: item.id } }">
+                        {{ $t('contact-person.list.contextMenuEdit') }}
+                    </sw-context-menu-item>
+
+                    <sw-context-menu-item
+                        @click="onDelete(item.id)"
+                        class="sw-context-menu-item--danger">
+                        {{ $t('contact-person.list.contextMenuDelete') }}
+                    </sw-context-menu-item>
+                </template>
+
+                <template #action-modals="{ item }">
+                    <sw-modal
+                        v-if="showDeleteModal === item.id"
+                        @modal-close="onCloseDeleteModal"
+                        :title="$t('global.default.warning')"
+                        variant="small">
+                        <p class="sw-contact-person-list__confirm-delete-text">
+                            {{ $t('contact-person.list.textDeleteConfirm', 0, { name: `${item.firstName} ${item.lastName}` }) }}
+                        </p>
+
+                        <template #modal-footer>
+                            <sw-button @click="onCloseDeleteModal" size="small">
+                                {{ $t('global.default.cancel') }}
+                                </sw-button>
+
+                                <sw-button @click="onConfirmDelete(item.id)" variant="danger" size="small">
+                                {{ $t('global.default.delete') }}
+                            </sw-button>
+                        </template>
+                    </sw-modal>
+                </template>
+            </sw-entity-listing>
+
+            <sw-loader v-if="isLoading && !contactPersons"></sw-loader>
+
+            <sw-empty-state
+                v-else-if="!isLoading && (!contactPersons || contactPersons.length === 0)"
+                :title="$t('contact-person.list.emptyStateTitle')"
+                :subline="$t('contact-person.list.emptyStateSubline')"
+                icon="default-identity-card">
+                <template #actions>
+                    <sw-button
+                        variant="primary"
+                        :routerLink="{ name: 'contact.person.create' }">
+                        {{ $t('contact-person.list.buttonAddContactPerson') }}
+                    </sw-button>
+                </template>
+            </sw-empty-state>
+        </div>
+    </template>
+</sw-page>

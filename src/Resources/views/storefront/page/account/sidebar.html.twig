@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/page/account/sidebar.html.twig' %}
+
+{% block page_account_sidebar_menu_inner %}
+    {{ parent() }}
+
+    {# Add Contact Persons menu item after orders #}
+    {% block page_account_sidebar_link_contact_persons %}
+        <a href="{{ path('frontend.account.contact.persons') }}"
+           title="{{ 'account.contactPersons.headline'|trans|striptags }}"
+           class="list-group-item list-group-item-action account-aside-item{% if activeRoute is same as('frontend.account.contact.persons') %} is-active{% endif %}"
+            {% if activeRoute is same as('frontend.account.contact.persons') %} aria-current="page"{% endif %}>
+            {{ 'account.contactPersons.headline'|trans|sw_sanitize }}
+        </a>
+    {% endblock %}
+{% endblock %}

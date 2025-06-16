@@ -1,0 +1,33 @@
+{
+  "name": "maxtllc/company-contact-manager",
+  "description": "Contact person management plugin",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Maximilian Thomas LLC",
+      "homepage": "https://maximilian-thomas.com"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.6"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "MaxTLLC\\MaxTLLCContactPersonManagement\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "MaxTLLC\\MaxTLLCContactPersonManagement\\MaxTLLCContactPersonManagement",
+    "copyright": "Maximilian Thomas LLC",
+    "label": {
+      "de-DE": "Kontaktpersonen-Manager",
+      "en-GB": "Contact Person Manager"
+    },
+    "description": {
+      "de-DE": "Verwalten und zuweisen von Kontaktpersonen zu Kunden mit Admin-Interface und Frontend-Anzeige",
+      "en-GB": "Manage and assign contact persons to customers with admin interface and frontend display"
+    }
+  }
+}

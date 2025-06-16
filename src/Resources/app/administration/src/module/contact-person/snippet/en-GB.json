@@ -1,0 +1,76 @@
+{
+  "sw-customer": {
+    "contactPerson": {
+      "tabTitle": "Contact Persons",
+      "cardTitle": "Assigned Contact Persons",
+      "buttonAssign": "Assign Contact Persons",
+      "buttonManageAll": "Manage All Contact Persons",
+      "buttonCreateNew": "Create New Contact Person",
+      "contextMenuEdit": "Edit Contact Person",
+      "contextMenuRemoveAssignment": "Remove Assignment",
+      "emptyStateTitle": "No contact persons assigned yet",
+      "emptyStateSubline": "Assign existing contact persons to this customer",
+      "modalTitleAssign": "Assign Contact Persons",
+      "assignmentDescription": "Select contact persons to assign to this customer:",
+      "noAvailableTitle": "No contact persons available",
+      "noAvailableSubline": "All contact persons are already assigned or none exist yet",
+      "buttonConfirmAssignment": "Assign Selected",
+      "assignmentSuccessTitle": "Success",
+      "assignmentSuccessMessage": "Contact persons have been assigned successfully.",
+      "removeAssignmentSuccessTitle": "Success",
+      "removeAssignmentSuccessMessage": "Contact person assignment has been removed successfully.",
+      "assignmentErrorTitle": "Error",
+      "assignmentErrorMessage": "Contact persons could not be assigned.",
+      "removeAssignmentErrorTitle": "Error",
+      "removeAssignmentErrorMessage": "Contact person assignment could not be removed."
+    }
+  },
+  "contact-person": {
+    "general": {
+      "mainMenuItemGeneral": "Contact Persons",
+      "descriptionTextModule": "Manage all contact persons"
+    },
+    "list": {
+      "textContactPersonOverview": "Contact Persons Overview",
+      "buttonAddContactPerson": "Add Contact Person",
+      "columnFirstName": "First Name",
+      "columnLastName": "Last Name",
+      "columnEmail": "Email",
+      "columnPhone": "Phone",
+      "columnCustomerNumber": "Customer Number",
+      "columnCustomerName": "Customer Name",
+      "columnActive": "Active",
+      "contextMenuEdit": "Edit",
+      "contextMenuDelete": "Delete",
+      "textDeleteConfirm": "Are you sure you want to delete the contact person \"{name}\"?",
+      "emptyStateTitle": "No contact persons available",
+      "emptyStateSubline": "Create the first contact person"
+    },
+    "detail": {
+      "textCreateNewContactPerson": "Create New Contact Person",
+      "textContactPersonDetail": "Contact Person Details",
+      "buttonCancel": "Cancel",
+      "buttonCreate": "Create",
+      "buttonSave": "Save",
+      "cardTitleContactPersonInfo": "Contact Person Information",
+      "labelFirstName": "First Name",
+      "placeholderFirstName": "Enter first name",
+      "labelLastName": "Last Name",
+      "placeholderLastName": "Enter last name",
+      "labelEmail": "Email",
+      "placeholderEmail": "Enter email address",
+      "labelPhone": "Phone",
+      "placeholderPhone": "Enter phone number",
+      "labelCustomer": "Customer",
+      "placeholderCustomer": "Select customer",
+      "labelActive": "Active",
+      "backToList": "Back to List",
+      "noCustomerAssigned": "No customer assigned",
+      "customerEditHelpText": "Customer assignment can only be changed during creation",
+      "viewCustomer": "View Customer",
+      "errorTitle": "Error",
+      "successTitle": "Success",
+      "successMessage": "Contact person has been saved successfully."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "account": {
+    "contactPersons": {
+      "headline": "Ansprechpartner",
+      "description": "Hier finden Sie alle Ihnen zugewiesenen Ansprechpartner.",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "noContactPersons": "Ihrem Konto sind derzeit keine Ansprechpartner zugewiesen.",
+      "noContactPersonsTitle": "Keine Ansprechpartner verfügbar"
+    },
+    "profile": {
+      "contactPersons": "Ihre Ansprechpartner",
+      "viewAllContactPersons": "Alle anzeigen",
+      "andMoreContactPersons": "... und %count% weitere"
+    }
+  }
+}

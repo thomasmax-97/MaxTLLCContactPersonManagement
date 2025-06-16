@@ -1,0 +1,105 @@
+<!-- src/Resources/app/administration/src/module/contact-person/page/contact-person-detail/contact-person-detail.html.twig -->
+<sw-page class="contact-person-detail">
+    <template #smart-bar-header>
+        <h2>
+            {{ identifier || $t('contact-person.detail.textContactPersonDetail') }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button-group>
+            <sw-button @click="onCancel">
+                {{ $t('contact-person.detail.buttonCancel') }}
+            </sw-button>
+
+            <sw-button
+                variant="primary"
+                :isLoading="isLoading"
+                @click="onClickSave">
+                {{ $t('contact-person.detail.buttonSave') }}
+            </sw-button>
+        </sw-button-group>
+    </template>
+
+    <template #content>
+        <sw-card-view>
+            <sw-card
+                :title="$t('contact-person.detail.cardTitleContactPersonInfo')"
+                :isLoading="isLoading">
+
+                <template v-if="contactPerson">
+                    <sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0px 30px">
+                        <sw-text-field
+                            v-model:value="contactPerson.firstName"
+                            :label="$t('contact-person.detail.labelFirstName')"
+                            :placeholder="$t('contact-person.detail.placeholderFirstName')"
+                            required>
+                        </sw-text-field>
+
+                        <sw-text-field
+                            v-model:value="contactPerson.lastName"
+                            :label="$t('contact-person.detail.labelLastName')"
+                            :placeholder="$t('contact-person.detail.placeholderLastName')"
+                            required>
+                        </sw-text-field>
+
+                        <sw-text-field
+                            v-model:value="contactPerson.email"
+                            :label="$t('contact-person.detail.labelEmail')"
+                            :placeholder="$t('contact-person.detail.placeholderEmail')"
+                            required>
+                        </sw-text-field>
+
+                        <sw-text-field
+                            v-model:value="contactPerson.phone"
+                            :label="$t('contact-person.detail.labelPhone')"
+                            :placeholder="$t('contact-person.detail.placeholderPhone')">
+                        </sw-text-field>
+
+                        <!-- Read-only customer display instead of selector -->
+                        <sw-text-field
+                            :value="customerDisplayName"
+                            :label="$t('contact-person.detail.labelCustomer')"
+                            :disabled="true"
+                            :helpText="$t('contact-person.detail.customerEditHelpText')">
+                            <template #suffix>
+                                <sw-icon
+                                    v-if="contactPerson.customer"
+                                    name="default-action-external-link"
+                                    size="16px"
+                                    @click="openCustomerDetails"
+                                    style="cursor: pointer;">
+                                </sw-icon>
+                            </template>
+                        </sw-text-field>
+
+                        <sw-switch-field
+                            v-model:value="contactPerson.active"
+                            :label="$t('contact-person.detail.labelActive')">
+                        </sw-switch-field>
+                    </sw-container>
+                </template>
+
+                <sw-loader v-else></sw-loader>
+            </sw-card>
+        </sw-card-view>
+    </template>
+
+    <template #sidebar>
+        <sw-sidebar>
+            <sw-sidebar-item
+                icon="default-arrow-360-left"
+                :title="$t('contact-person.detail.backToList')"
+                @click="onCancel">
+            </sw-sidebar-item>
+
+            <!-- Optional: Add link to customer details if customer is assigned -->
+            <sw-sidebar-item
+                v-if="contactPerson && contactPerson.customer"
+                icon="default-avatar-single"
+                :title="$t('contact-person.detail.viewCustomer')"
+                @click="openCustomerDetails">
+            </sw-sidebar-item>
+        </sw-sidebar>
+    </template>
+</sw-page>

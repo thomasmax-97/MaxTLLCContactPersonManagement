@@ -1,0 +1,69 @@
+{% sw_extends '@Storefront/storefront/page/account/profile/index.html.twig' %}
+
+{% block page_account_profile_main_content %}
+    {{ parent() }}
+
+    {% set contactPersons = page.getExtension('contactPersons') %}
+    {% if contactPersons and contactPersons.all|length > 0 %}
+        <div class="account-profile-contact-persons mt-5">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">
+                        {{ "account.profile.contactPersons"|trans|sw_sanitize }}
+                    </h4>
+                    <a href="{{ path('frontend.account.contact.persons') }}"
+                       class="btn btn-sm btn-outline-primary">
+                        {{ "account.profile.viewAllContactPersons"|trans|sw_sanitize }}
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for contactPerson in contactPersons.all|slice(0, 3) %}
+                            <div class="col-md-4 mb-3">
+                                <div class="contact-person-summary text-center">
+                                    {% if contactPerson.image %}
+                                        <img src="{{ contactPerson.image|sw_encode_media_url }}"
+                                             alt="{{ contactPerson.firstName }} {{ contactPerson.lastName }}"
+                                             class="contact-person-thumb rounded-circle mb-3"
+                                             style="width: 60px; height: 60px; object-fit: cover;">
+                                    {% else %}
+                                        <div class="contact-person-avatar bg-light rounded-circle d-flex align-items-center justify-content-center mb-3 mx-auto"
+                                             style="width: 60px; height: 60px;">
+                                            <i class="fas fa-user text-muted"></i>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="contact-person-summary-info">
+                                        <h6 class="mb-1">{{ contactPerson.firstName }} {{ contactPerson.lastName }}</h6>
+                                        <small class="text-muted d-block mb-1">
+                                            <a href="mailto:{{ contactPerson.email }}"
+                                               class="text-decoration-none text-muted">
+                                                {{ contactPerson.email }}
+                                            </a>
+                                        </small>
+                                        {% if contactPerson.phone %}
+                                            <small class="text-muted d-block">
+                                                <a href="tel:{{ contactPerson.phone }}"
+                                                   class="text-decoration-none text-muted">
+                                                    {{ contactPerson.phone }}
+                                                </a>
+                                            </small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if contactPersons.all|length > 3 %}
+                        <div class="text-center mt-3">
+                            <small class="text-muted">
+                                {{ "account.profile.andMoreContactPersons"|trans({'%count%': contactPersons.all|length - 3})|sw_sanitize }}
+                            </small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

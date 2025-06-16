@@ -1,0 +1,28 @@
+{
+  "sw-customer": {
+    "contactPerson": {
+      "tabTitle": "Contact Persons",
+      "cardTitle": "Assigned Contact Persons",
+      "buttonAssign": "Assign Contact Persons",
+      "buttonManageAll": "Manage All Contact Persons",
+      "buttonCreateNew": "Create New Contact Person",
+      "contextMenuEdit": "Edit Contact Person",
+      "contextMenuRemoveAssignment": "Remove Assignment",
+      "emptyStateTitle": "No contact persons assigned yet",
+      "emptyStateSubline": "Assign existing contact persons to this customer",
+      "modalTitleAssign": "Assign Contact Persons",
+      "assignmentDescription": "Select contact persons to assign to this customer:",
+      "noAvailableTitle": "No contact persons available",
+      "noAvailableSubline": "All contact persons are already assigned or none exist yet",
+      "buttonConfirmAssignment": "Assign Selected",
+      "assignmentSuccessTitle": "Success",
+      "assignmentSuccessMessage": "Contact persons have been assigned successfully.",
+      "removeAssignmentSuccessTitle": "Success",
+      "removeAssignmentSuccessMessage": "Contact person assignment has been removed successfully.",
+      "assignmentErrorTitle": "Error",
+      "assignmentErrorMessage": "Contact persons could not be assigned.",
+      "removeAssignmentErrorTitle": "Error",
+      "removeAssignmentErrorMessage": "Contact person assignment could not be removed."
+    }
+  }
+}

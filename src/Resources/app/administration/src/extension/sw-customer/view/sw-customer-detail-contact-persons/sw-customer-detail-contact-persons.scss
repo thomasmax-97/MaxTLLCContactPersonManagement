@@ -1,0 +1,52 @@
+// src/Resources/app/administration/src/view/sw-customer-detail-contact-persons/sw-customer-detail-contact-persons.scss
+
+// Minimal styling - let Shopware components handle most of the work
+.sw-customer-detail-contact-persons {
+  // Use sw-card's built-in toolbar slot - no custom styling needed
+
+  // Only style what's not handled by sw-data-grid component
+  .sw-customer-contact-persons__table-container {
+    margin-top: 16px;
+  }
+}
+
+// Modal - use sw-modal's built-in styling
+.sw-customer-contact-assignment-modal {
+  // Customer info highlight box
+  .sw-customer-contact-assignment__customer-info {
+    padding: 12px;
+    background-color: var(--color-background-secondary);
+    border-radius: 4px;
+    border-left: 4px solid var(--color-brand-primary);
+    margin: 16px 0;
+  }
+
+  // Selection feedback
+  .sw-customer-contact-assignment__selection-info {
+    margin-top: 16px;
+    padding: 8px 12px;
+    background-color: var(--color-success-50);
+    border: 1px solid var(--color-success-500);
+    border-radius: 4px;
+
+    p {
+      margin: 0;
+      color: var(--color-success-600);
+    }
+  }
+}
+
+// Mobile: Stack toolbar buttons using sw-card's responsive behavior
+@media (max-width: 767px) {
+  .sw-customer-detail-contact-persons {
+    .sw-customer-contact-persons__toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .sw-button {
+        width: 100%;
+      }
+    }
+  }
+}

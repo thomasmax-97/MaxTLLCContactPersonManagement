@@ -1,0 +1,28 @@
+{
+  "sw-customer": {
+    "contactPerson": {
+      "tabTitle": "Kontaktpersonen",
+      "cardTitle": "Zugewiesene Kontaktpersonen",
+      "buttonAssign": "Kontaktpersonen zuweisen",
+      "buttonManageAll": "Alle Kontaktpersonen verwalten",
+      "buttonCreateNew": "Neue Kontaktperson erstellen",
+      "contextMenuEdit": "Kontaktperson bearbeiten",
+      "contextMenuRemoveAssignment": "Zuweisung entfernen",
+      "emptyStateTitle": "Keine Kontaktpersonen zugewiesen",
+      "emptyStateSubline": "Weise bestehende Kontaktpersonen diesem Kunden zu",
+      "modalTitleAssign": "Kontaktpersonen zuweisen",
+      "assignmentDescription": "Wähle Kontaktpersonen aus, die diesem Kunden zugewiesen werden sollen:",
+      "noAvailableTitle": "Keine Kontaktpersonen verfügbar",
+      "noAvailableSubline": "Alle Kontaktpersonen sind bereits zugewiesen oder es existieren noch keine",
+      "buttonConfirmAssignment": "Ausgewählte zuweisen",
+      "assignmentSuccessTitle": "Erfolg",
+      "assignmentSuccessMessage": "Kontaktpersonen wurden erfolgreich zugewiesen.",
+      "removeAssignmentSuccessTitle": "Erfolg",
+      "removeAssignmentSuccessMessage": "Kontaktperson-Zuweisung wurde erfolgreich entfernt.",
+      "assignmentErrorTitle": "Fehler",
+      "assignmentErrorMessage": "Kontaktpersonen konnten nicht zugewiesen werden.",
+      "removeAssignmentErrorTitle": "Fehler",
+      "removeAssignmentErrorMessage": "Kontaktperson-Zuweisung konnte nicht entfernt werden."
+    }
+  }
+}
